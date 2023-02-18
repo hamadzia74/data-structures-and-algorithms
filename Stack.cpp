@@ -1,58 +1,59 @@
 #include<iostream>
 using namespace std;
-class Stack
-{
-	public:
-		int arr[10], top;
-		public:
-			stack()
-			{
-				top=-1;
-			}
-			void push(int v)
-			{
-				if(top==9)
-				cout<<"Stack is Full."<<endl;
-				else
-				{
-					arr[++top]=v;
-					cout<<"Data pushed successfully."<<endl;
-				}
-			}
-			int pop()
-			{
-				if(top==-1)
-				{
-					cout<<"Stack Empty."<<endl;
-					return NULL;
-				}
-				else
-				return arr[top--];
-			}
-};
+#define SIZE 10
+
+void push(int);
+void pop();
+void display();
+
+int stack[SIZE], top = -1;
+
 int main()
 {
-	Stack s;
-	s.push(2);
-	s.push(4);
-	s.push(6);
-	s.push(8);
-	s.push(10);
-	s.push(12);
-	s.push(14);
-	s.push(16);
-	s.push(18);
-	s.push(20);
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	cout<<s.pop()<<endl;
-	system("pause");
+   int value, choice;
+   while(1){
+      printf("\n\n***** MENU *****\n");
+      printf("1. Push\n2. Pop\n3. Display\n4. Exit");
+      printf("\nEnter your choice: ");
+      scanf("%d",&choice);
+      switch(choice){
+	 case 1: printf("Enter the value to be insert: ");
+		 scanf("%d",&value);
+		 push(value);
+		 break;
+	 case 2: pop();
+		 break;
+	 case 3: display();
+		 break;
+	 case 4: exit(0);
+	 default: printf("\nWrong selection!!! Try again!!!");
+      }
+   }
+}
+void push(int value){
+   if(top == SIZE-1)
+      printf("\nStack is Full!!! Insertion is not possible!!!");
+   else{
+      top++;
+      stack[top] = value;
+      printf("\nInsertion success!!!");
+   }
+}
+void pop(){
+   if(top == -1)
+      printf("\nStack is Empty!!! Deletion is not possible!!!");
+   else{
+      printf("\nDeleted : %d", stack[top]);
+      top--;
+   }
+}
+void display(){
+   if(top == -1)
+      printf("\nStack is Empty!!!");
+   else{
+      int i;
+      printf("\nStack elements are:\n");
+      for(i=top; i>=0; i--)
+	 printf("%d\n",stack[i]);
+   }
 }
